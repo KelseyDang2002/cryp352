@@ -51,25 +51,25 @@ spinner = MoonSpinner('Encrypting ' + SOURCE_FILE_NAME + ' to create output file
 
 # Go through the source file
 while plainBytes:
-	
-	# Anything left to encrypt?	
+
+	# Anything left to encrypt?
 	if plainBytes:
-		
+
 		# Should we pad?
 		if len(plainBytes) < 16:
-		
+
 			# Pad it!
 			plainBytes = pad(plainBytes, BLOCK_SIZE)
-	
+
 		# Encrypt!
 		cipherBytes = encCipher.encrypt(plainBytes)
-	
+
 		# Save the contents
 		destFile.write(cipherBytes)
-	
+
 	# Read a block of plaintext
 	plainBytes = sourceFile.read(16)
-	
+
 	# Update the progress bar
 	spinner.next()
 # Close the files
