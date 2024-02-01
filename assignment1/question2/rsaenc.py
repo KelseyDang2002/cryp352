@@ -41,20 +41,20 @@ spinner = MoonSpinner('Encrypting ' + SOURCE_FILE_NAME + ' to create output file
 
 # Keep reading and encrypting
 while plainBytes:
-	
+
 
 	# Read the plaintext bytes
 	if plainBytes:
-	
+
 		# Encrypt!
 		cipherBytes = cipher_rsa.encrypt(plainBytes)
-		
+
 		# Save the bytes
 		file_out.write(cipherBytes)
-	
+
 	# Read the plaintext bytes
 	plainBytes = sourceFile.read(2006)
-	
+
 	# Work the progress bar
 	spinner.next()
 
