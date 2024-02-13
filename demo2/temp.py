@@ -10,16 +10,20 @@ from Cryptodome.Cipher import AES
 key = b'Sixteen byte key' # b = raw byte
 
 # Set up the AES encryption class
-encCipher = AES.new(key, AES.MODE_ECB) # new used to create instance
+# encCipher = AES.new(key, AES.MODE_ECB) # new used to create instance
 
 # AES requires plain/cipher text blocks to be 16 bytes
-cipherText = encCipher.encrypt(b'hello12345678s0d1111111111111111') # 2 blocks worth
+# cipherText = encCipher.encrypt(b'hello12345678s0d1111111111111111') # 2 blocks worth
 
-print("Cipher text: ", cipherText)
+# print("Cipher text: ", cipherText)
 
-# cipherFile = open("encrypted.enc", "wb")
-# cipherFile.write(cipherText)
-# cipherFile.close()
+# encFile = open("encrypted.enc", "wb")
+# encFile.write(cipherText)
+# encFile.close()
+
+cipherFile = open("encrypted.enc", "rb")
+cipherText = cipherFile.read()
+cipherFile.close()
 
 ########### BASIC DECRYPTION ##############
 
@@ -31,6 +35,6 @@ plainText = decCipher.decrypt(cipherText)
 
 print("Decrypted text: ", plainText)
 
-# plainFile = open("plain.dec", "wb")
-# plainFile.write(plainText)
-# plainFile.close()
+decFile = open("plain.dec", "wb")
+decFile.write(plainText)
+decFile.close()
