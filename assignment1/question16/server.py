@@ -21,7 +21,7 @@ serverSock.listen(100)
 
 # Keep accepting conncetions forever
 while True:
-=======
+
     print("\nWaiting for clients to connect...")
 
     # Accept a waiting connection
@@ -50,4 +50,3 @@ while True:
 
     # Hang up the client's connection
     cliSock.close()
->>>>>>> 1b1da538ca394025d8ebd83612bc50b104109085
