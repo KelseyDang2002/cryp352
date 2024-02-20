@@ -32,21 +32,21 @@ while True:
     # Receive the data the client has to send.
     # This will receive at most 1024 bytes
     cliMsg = cliSock.recv(1024)
-    print("\tReceived: " + str(cliMsg))
+    print("Received: " + str(cliMsg))
 
     # Decrypt the message
     cipher = AES.new(KEY, AES.MODE_ECB)
     decryptedMsg = cipher.decrypt(cliMsg)
-    print("\tDecrypted: " + str(decryptedMsg))
+    print("Decrypted: " + str(decryptedMsg))
 
     # Unpad msg
     unpaddedMsg = unpad(decryptedMsg, AES.block_size)
-    print("\tUnpadded: " + str(unpaddedMsg))
+    print("Unpadded: " + str(unpaddedMsg))
     
     # Decode msg
     finalMsg = unpaddedMsg.decode('utf-8')
 
-    print("\tFinal decrypted message: " + str(finalMsg))
+    print("Final decrypted message: " + str(finalMsg))
 
     # Hang up the client's connection
     cliSock.close()
