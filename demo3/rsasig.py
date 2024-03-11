@@ -1,9 +1,8 @@
-
-from Crypto.PublicKey import RSA
-from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
-from Crypto.Hash import SHA256
+from Cryptodome.PublicKey import RSA
+from Cryptodome.Signature.pkcs1_15 import PKCS115_SigScheme
+from Cryptodome.Hash import SHA256
 import binascii
-import Crypto.Signature.pkcs1_15
+import Cryptodome.Signature.pkcs1_15
 
 # Generate 1024-bit RSA key pair (private + public key)
 keyPair = RSA.generate(bits=1024)
@@ -22,29 +21,28 @@ hash = SHA256.new(msg)
 hash1 = SHA256.new(msg1)
 
 # Sign the hash
-sig1 = Crypto.Signature.pkcs1_15.new(keyPair)
+sig1 = Cryptodome.Signature.pkcs1_15.new(keyPair)
 signature = sig1.sign(hash)
 
 ##################### On the arrival side #########################
-# Note, we will have to take the decrypted message, hash it and then provide the
-# hash and the signature to the
-# verify function
-verifier = Crypto.Signature.pkcs1_15.new(justPubKey)
 
-# If the verification succeeds, nothing is returned. Otherwise a ValueError
-# exception is raised
+# Note, we will have to take the decrypted message, hash it and then provide thehash and the signature to the
+# verify function
+verifier = Cryptodome.Signature.pkcs1_15.new(justPubKey)
+
+# If the verification succeeds, nothing is returned. Otherwise a ValueError exception is raised
 # Let's try this with the valid message
 try:
-    sig1.verify(hash, signature)
+    verifier.verify(hash, signature)
     print("The signature is valid!")
 except ValueError:
     print("The signature is not valid!")
-
+    
 hash = hash1
 
 # Now with the invalid message
 try:
-    sig1.verify(hash1, signature)
+    verifier.verify(hash1, signature)
     print("The signature is valid!")
 except ValueError:
     print("The signature is not valid!")
