@@ -1,5 +1,5 @@
-a = 3
-q = 17
+a = int(input("Enter value for a: "))
+q = int(input("Enter value for q: "))
 
 i = 1
 
