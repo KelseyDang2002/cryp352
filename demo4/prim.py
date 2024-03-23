@@ -8,8 +8,9 @@ lst = []
 while i < q:
     result = (a**i) % q
     lst.append(result)
+    print(a, "^", i, "mod", q, "=", result)
     i += 1
 
 lst.sort()
-print(lst)
+print("\nSorted:", lst)
 
