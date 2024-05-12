@@ -314,6 +314,12 @@ print(pc1Out, " ", len(pc1Out))
 print(lcsOut)
 print(pc2Out)
 
+block2 = "111011"
+
+sbox_result = doSbox(__sbox8, block2)
+print("Block: " + block2)
+print("S-Box result: " + result)
+
 '''
 
 round1 = LCS by 1 bit
