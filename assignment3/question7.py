@@ -46,38 +46,10 @@ def hash_password(password):
     salt = bcrypt.gensalt()
     print("\nSalt: ", salt)
     hashed_password = bcrypt.hashpw(password_in_bytes, salt)
-    print("Hashed password: ", type(hashed_password), hashed_password)
+    print("Hashed password: ", hashed_password)
     return hashed_password
 
 def store_in_db(username, hashed_password_in_bytes):
-    # account_dict = {}
-
-    # file_read = open("db.txt", "r")
-
-    # for accounts in file_read:
-    #     try:
-    #         user, hashed_password = accounts.strip().split(" ")
-    #         account_dict[user] = hashed_password
-    #     except(ValueError):
-    #         print("error")
-
-    # file_read.close()
-
-    # for user in account_dict.keys():
-    #     if username == user:
-    #         print("\nAccount already exists. Run the program again and try to log in.")
-    #         break
-
-    #     else:
-    #         account = username + " " + hashed_password + "\n"
-    #         print("\nAppend ", account, "to db.txt")
-    #         print(type(account))
-    #         file_append = open("db.txt", "a")
-    #         file_append.write(account)
-    #         file_append.close()
-    #         print("\nAccount successfully created! Run the program again and try to log in.")
-    #         break
-
     hashed_password = hashed_password_in_bytes.decode('utf-8')
     account = username + " " + hashed_password + "\n"
     print("\nAppend ", account, "to db.txt")
@@ -106,24 +78,15 @@ def check_if_in_db(username, password):
 
     print("\n", account_dict)
 
-    for user in account_dict.keys():
-        print(user)
-        if user == username:
-            hashed_password = account_dict[user]
+    for user, hashed_password in account_dict.items():
+        if username == user:
             print(user, " ", hashed_password)
             hashed_password_in_bytes = bytes(hashed_password, 'utf-8')
             hashed_password_in_bytes = hashed_password.encode('utf-8')
-
             if bcrypt.checkpw(password_in_bytes, hashed_password_in_bytes):
                 print("\nPasswords match! Successfully logged in.")
             else:
                 print("\nIncorrect password. Run the program again.")
-            break
-
-        else:
-            print(username)
-            print(user, " ", hashed_password)
-            print("\nAccount does not exist. Run the program again and create an account.")
             break
 
 # prompt user with options
