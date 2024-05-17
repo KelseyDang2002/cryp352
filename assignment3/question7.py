@@ -29,20 +29,20 @@ import pwinput
 
 def create_account():
     username = input("Pick a username: ")
-    password = pwinput.pwinput(prompt = "Pick a password: ")
-    print("\nYou entered: ", username, " ", password)
+    password = pwinput.pwinput(prompt = "Enter the password: ")
+    print("\nYou entered: \nUsername: ", username, "\nPassword: ", password)
     return username, password
 
 def log_in():
     username = input("Enter existing username: ")
     password = pwinput.pwinput(prompt = "Enter the password: ")
-    print("\nYou entered: ", username, " ", password)
+    print("\nYou entered: \nUsername: ", username, "\nPassword: ", password)
     return username, password
 
 def hash_password(password):
     password_in_bytes = bytes(password, 'utf-8')
     password_in_bytes = password.encode('utf-8')
-    print("Password converted to bytes: ", type(password_in_bytes), password_in_bytes)
+    print("\nPassword converted to bytes: ", password_in_bytes)
     salt = bcrypt.gensalt()
     print("\nSalt: ", salt)
     hashed_password = bcrypt.hashpw(password_in_bytes, salt)
@@ -51,19 +51,15 @@ def hash_password(password):
 
 def store_in_db(username, hashed_password_in_bytes):
     hashed_password = hashed_password_in_bytes.decode('utf-8')
-    account = username + " " + hashed_password + "\n"
-    print("\nAppend ", account, "to db.txt")
-    print(type(account))
+    account = username + " " + hashed_password
+    print("\nAppending", account, "to db.txt...")
     file_append = open("db.txt", "a")
-    file_append.write(account)
+    file_append.write("{}\n".format(account))
     file_append.close()
-    print("\nAccount successfully created! Run the program again and try to log in.")
+    print("\nAccount successfully created! Run the program again and try to log in.".upper())
 
 def check_if_in_db(username, password):
     account_dict = {}
-
-    print("\nUsername: ", username)
-    print("Password: ", password)
 
     password_in_bytes = bytes(password, 'utf-8')
     password_in_bytes = password.encode('utf-8')
@@ -76,17 +72,17 @@ def check_if_in_db(username, password):
 
     file_read.close()
 
-    print("\n", account_dict)
+    # print("\n", account_dict)
 
     for user, hashed_password in account_dict.items():
         if username == user:
-            print(user, " ", hashed_password)
+            print("\n", user, " ", hashed_password)
             hashed_password_in_bytes = bytes(hashed_password, 'utf-8')
             hashed_password_in_bytes = hashed_password.encode('utf-8')
             if bcrypt.checkpw(password_in_bytes, hashed_password_in_bytes):
-                print("\nPasswords match! Successfully logged in.")
+                print("\nPasswords match! Successfully logged in.".upper())
             else:
-                print("\nIncorrect password. Run the program again.")
+                print("\nIncorrect password. Run the program again.".upper())
             break
 
 # prompt user with options

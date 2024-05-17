@@ -1,3 +1,6 @@
 cheesus $2a$12$iWxnKOU7j.IyLnpxFbKWkeJl8HGG35KLRPBIkfOF2M85YtCS8fEHa
 Bob $2b$12$oLYPnohs8xEn7pxEbMRVF.INpKxyRuGgnPvILjVtXBXMnEZ87Pt1q
 Joe $2b$12$HiLC4fnDlZvQyNF3euz4De8i2eliv9BxkZUhEwB99qhZo8BNeeAk2
+Mike $2b$12$ptHBUux/YL2ZAGTkaQBPC.9YsqiQQdiPJhBfCgQujnjLztCBIdjNS
+Steve $2b$12$sTOtakIePJMgj3lpKmIrQer6Ep5Zfajc493u97uqgRzqNf3v4uAAq
+Fred $2b$12$mEr40D4Ax3XBznzKoovj3.RcumeQFOpKWNLzPhdFdztQOIzfxlkVe
