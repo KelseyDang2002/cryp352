@@ -30,13 +30,13 @@ import pwinput
 def create_account():
     username = input("Pick a username: ")
     password = pwinput.pwinput(prompt = "Pick a password: ")
-    print("\nYou entered: ", type(username),username, " ", type(password), password)
+    print("\nYou entered: ", username, " ", password)
     return username, password
 
 def log_in():
     username = input("Enter existing username: ")
     password = pwinput.pwinput(prompt = "Enter the password: ")
-    print("\nYou entered: ", type(username),username, " ", type(password), password)
+    print("\nYou entered: ", username, " ", password)
     return username, password
 
 def hash_password(password):
@@ -50,34 +50,71 @@ def hash_password(password):
     return hashed_password
 
 def store_in_db(username, hashed_password):
-    account = username + " " + hashed_password + "\n"
-    print("\nAppend ", account, "to db.txt")
-    print(type(account))
-    file_append = open("db.txt", "a")
-    file_append.write(account)
-    file_append.close
-    print("\nAccount successfully created! Run the program again and try to log in.")
-    # return username, hashed_password
+    account_dict = {}
 
-def check_if_in_db(username, password):
-    password_in_bytes = bytes(password, 'utf-8')
-    password_in_bytes = password.encode('utf-8')
-    print("\nUsername: ", username)
-    print("Password: ", password_in_bytes)
     file_read = open("db.txt", "r")
 
     for accounts in file_read:
-        account = accounts.strip()
-        print(account)
+        try:
+            user, hashed_password = accounts.strip().split(" ")
+            account_dict[user] = hashed_password
+        except(ValueError):
+            print("error")
 
     file_read.close()
 
-    hashed_password_in_db = "read from file"
+    for user in account_dict.keys():
+        if username == user:
+            print("\nAccount already exists. Run the program again and try to log in.")
+            break
+
+        else:
+            account = username + " " + hashed_password
+            print("\nAppend ", account, "to db.txt")
+            print(type(account))
+            file_append = open("db.txt", "a")
+            file_append.write(account)
+            file_append.close()
+            print("\nAccount successfully created! Run the program again and try to log in.")
+            break
+
+def check_if_in_db(username, password):
+    account_dict = {}
+
+    print("\nUsername: ", username)
+    print("Password: ", password)
+
+    password_in_bytes = bytes(password, 'utf-8')
+    password_in_bytes = password.encode('utf-8')
     
-    # if bcrypt.checkpw(password_in_bytes, hashed_password_in_db):
-    #     print("Passwords match!")
-    # else:
-    #     print("Incorrect password or account does not exist.")
+    file_read = open("db.txt", "r")
+
+    for accounts in file_read:
+        user, hashed_password = accounts.strip().split(" ")
+        account_dict[user] = hashed_password
+
+    file_read.close()
+
+    print(account_dict)
+
+    for user in account_dict:
+        if username == user:
+            hashed_password = account_dict[user]
+            print(user, " ", hashed_password)
+            hashed_password_in_bytes = bytes(hashed_password, 'utf-8')
+            hashed_password_in_bytes = hashed_password.encode('utf-8')
+
+            if bcrypt.checkpw(password_in_bytes, hashed_password_in_bytes):
+                print("\nPasswords match! Successfully logged in.")
+            else:
+                print("\nIncorrect password. Run the program again.")
+
+            break
+
+        else:
+            print(user, " ", hashed_password)
+            print("\nAccount does not exist. Run the program again and create an account.")
+            break
 
 # prompt user with options
 selected_option = int(input("Choose (1) to create an account or; (2) to log into existing account: "))
