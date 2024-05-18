@@ -74,6 +74,10 @@ def check_if_in_db(username, password):
 
     # print("\n", account_dict)
 
+    if username not in account_dict.keys():
+        print("\nAccount does not exist.")
+        return 0
+
     for user, hashed_password in account_dict.items():
         if username == user:
             print("\n", user, " ", hashed_password)
