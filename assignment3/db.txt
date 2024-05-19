@@ -1,6 +1,7 @@
-cheesus $2a$12$iWxnKOU7j.IyLnpxFbKWkeJl8HGG35KLRPBIkfOF2M85YtCS8fEHa
-Bob $2b$12$oLYPnohs8xEn7pxEbMRVF.INpKxyRuGgnPvILjVtXBXMnEZ87Pt1q
-Joe $2b$12$HiLC4fnDlZvQyNF3euz4De8i2eliv9BxkZUhEwB99qhZo8BNeeAk2
-Mike $2b$12$ptHBUux/YL2ZAGTkaQBPC.9YsqiQQdiPJhBfCgQujnjLztCBIdjNS
-Steve $2b$12$sTOtakIePJMgj3lpKmIrQer6Ep5Zfajc493u97uqgRzqNf3v4uAAq
-Fred $2b$12$mEr40D4Ax3XBznzKoovj3.RcumeQFOpKWNLzPhdFdztQOIzfxlkVe
+cheesus $2a$12$/iGkIIZKSRBT.Jjt5ZmRVubtCdRctf2zKYOx4h6gdasEIJvOj4AWK
+Bob $2a$12$wLQ9XY7oN6IQuoosDH6dQ.LSMKFjRryCnXzNIPTP7hEnZy1aI/KNi
+Joe $2a$12$BwJeYNsCFDtuZAPkG0N2sOM1P44M7ZUb5U7cEp8flN7EaxY3gj9Tm
+Mike $2a$12$CynyMeO53rKhSVVGxz//A.sg0Hbq7ThC3O2dSEXwjZy3GVWHQu9iO
+Steve $2a$12$AILuE283LdZ/A/X30rSwj.xkPKVpsmDyWNCFi0C3p.AiREwcFMRF.
+Fred $2a$12$k86X4vIqfp9g54crV9.pAOsCJaIemBO1N5H1qwq0iOtNXeIHAUJZq
+Human $2a$12$ggbM3KqiFirzkX7b8OBTCOVi.j3SbpbswmQtHjMRwpLaDKGEfd/Vq

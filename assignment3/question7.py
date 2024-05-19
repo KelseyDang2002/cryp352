@@ -50,7 +50,21 @@ def hash_password(password):
     return hashed_password
 
 def store_in_db(username, hashed_password_in_bytes):
-    hashed_password = hashed_password_in_bytes.decode('utf-8')
+    account_dict = {}
+
+    file_read = open("db.txt", "r")
+
+    for accounts in file_read:
+        user, hashed_password = accounts.strip().split(" ")
+        account_dict[user] = hashed_password
+
+    file_read.close()
+
+    if username in account_dict.keys():
+        print("\nAccount already exists. Run the program again and try to log in.")
+        return 0
+    
+    hashed_password = hashed_password_in_bytes #.decode('utf-8')
     account = username + " " + hashed_password
     print("\nAppending", account, "to db.txt...")
     file_append = open("db.txt", "a")
@@ -72,10 +86,8 @@ def check_if_in_db(username, password):
 
     file_read.close()
 
-    # print("\n", account_dict)
-
     if username not in account_dict.keys():
-        print("\nAccount does not exist.")
+        print("\nLogin denied. Account does not exist. ")
         return 0
 
     for user, hashed_password in account_dict.items():
@@ -86,7 +98,7 @@ def check_if_in_db(username, password):
             if bcrypt.checkpw(password_in_bytes, hashed_password_in_bytes):
                 print("\nPasswords match! Successfully logged in.".upper())
             else:
-                print("\nIncorrect password. Run the program again.".upper())
+                print("\nLogin denied. Incorrect password.")
             break
 
 # prompt user with options
